@@ -1,0 +1,36 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2007 OpenWrt.org
+
+START=99
+
+start_instance() {
+	config_get_bool enabled "$1" 'enabled'
+	config_get localport "$1" 'localport'
+	config_get remoteport "$1" 'remoteport'
+	config_get monitorport "$1" 'monitorport'
+	config_get ssh "$1" 'ssh'
+	config_get poll "$1" 'poll'
+	export AUTOSSH_GATETIME="30"
+	export AUTOSSH_POLL="${poll:-600}"
+	if [ "$enabled" = 1 ]; then
+		echo ${monitorport:-20000}
+		/usr/sbin/autossh \
+			-M ${monitorport:-20000} \
+			-fNR ${remoteport}:localhost:${localport} ${ssh}
+	fi
+}
+
+start() {
+	config_load 'autossh'
+	config_foreach start_instance 'autossh'
+}
+
+stop() {
+	killall autossh
+	sleep 2
+}
+
+boot() {
+	sleep 30
+	start
+}

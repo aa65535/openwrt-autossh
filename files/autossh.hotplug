@@ -1,0 +1,8 @@
+#!/bin/sh
+# Copyright (C) 2007 OpenWrt.org
+
+/etc/init.d/autossh enabled || exit 0
+
+[ "$ACTION" = "ifup" ] && /etc/init.d/autossh start
+
+[ "$ACTION" = "ifdown" ] && /etc/init.d/autossh stop

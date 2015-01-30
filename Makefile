@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=autossh
 PKG_VERSION:=1.4d
-PKG_RELEASE:=7
+PKG_RELEASE:=8
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tgz
 PKG_SOURCE_URL:=http://www.harding.motd.ca/autossh/
@@ -32,7 +32,7 @@ define Build/Compile
 	)
 endef
 
-define Package/luci-app-autossh/postinst
+define Package/autossh/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	( . /etc/uci-defaults/luci-autossh ) && rm -f /etc/uci-defaults/luci-autossh

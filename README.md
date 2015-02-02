@@ -1,24 +1,45 @@
 Autossh for OpenWrt
 ===
 
-编译
+Install
 ---
 
- - 从 OpenWrt 的 [SDK][S] 编译
+ - [Download a release][0], then 
+
+   ```
+   opkg update
+   opkg install openssh-client
+   opkg install autossh_1.4d-x_xxxxx.ipk
+   ```
+
+Build
+---
+
+ - If you use other OpenWRT versions, build yourself: cd into [SDK][S] root, then
 
    ```bash
-   # 以 ar71xx 平台为例
-   tar xjf OpenWrt-SDK-ar71xx-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2
-   cd OpenWrt-SDK-ar71xx-*
-   # 获取 Makefile
+   # clone the Makefile
    git clone https://github.com/aa65535/openwrt-autossh.git package/autossh
-   # 选择要编译的包 Network -> autossh
+   # select Network -> autossh
    make menuconfig
-   # 开始编译
    make package/autossh/compile V=99
    ```
+
+Usage
+---
+
+ 1. Enable PubkeyAuthentication and put your public key to `.ssh/authorized_keys` on server-side.
+
+ 2. If you need to access it from the public network, you need to enable GatewayPorts.
+
+ 3. Put your private key to `.ssh/id_rsa` on OpenWrt.
+
+ 4. First, manually connect the server in the command line, to write `.ssh/known_hosts`.
+
+ 5. Then, configure and use it.
 
 ----------
 
 
+  [0]: https://github.com/aa65535/openwrt-autossh/releases
   [S]: http://wiki.openwrt.org/doc/howto/obtain.firmware.sdk

@@ -1,7 +1,7 @@
 #
-# Copyright (C) 2006-2012 OpenWrt.org
+# Copyright (C) 2015 Jian Chang <aa65535@live.com>
 #
-# This is free software, licensed under the GNU General Public License v2.
+# This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
 #
 

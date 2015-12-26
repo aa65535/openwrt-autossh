@@ -1,5 +1,10 @@
 #!/bin/sh
-# Copyright (C) 2007 OpenWrt.org
+#
+# Copyright (C) 2015 Jian Chang <aa65535@live.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
 
 /etc/init.d/autossh enabled || exit 0
 

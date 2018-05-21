@@ -70,7 +70,10 @@ start() {
 }
 
 stop() {
-	killall autossh
+	for pid in `ps|grep '[b]in/autossh'|awk '{print $1}'`
+	do
+		kill "$pid"
+	done
 	sleep 2
 }
 

@@ -14,9 +14,48 @@ start_instance() {
 	config_get remoteport "$1" 'remoteport'
 	config_get monitorport "$1" 'monitorport'
 	config_get ssh "$1" 'ssh'
-	config_get poll "$1" 'poll'
-	export AUTOSSH_GATETIME="30"
-	export AUTOSSH_POLL="${poll:-600}"
+	unset AUTOSSH_FIRST_POLL
+	unset AUTOSSH_GATETIME
+	unset AUTOSSH_LOGLEVEL
+	unset AUTOSSH_LOGFILE
+	unset AUTOSSH_MAXLIFETIME
+	unset AUTOSSH_MAXSTART
+	unset AUTOSSH_MESSAGE
+	unset AUTOSSH_NTSERVICE
+	unset AUTOSSH_PATH
+	unset AUTOSSH_PIDFILE
+	unset poll
+	unset AUTOSSH_POLL
+	unset AUTOSSH_PORT
+	config_get AUTOSSH_FIRST_POLL	"$1"  'AUTOSSH_FIRST_POLL'
+	config_get AUTOSSH_GATETIME	"$1"  'AUTOSSH_GATETIME'
+	config_get AUTOSSH_LOGLEVEL	"$1"  'AUTOSSH_LOGLEVEL'
+	config_get AUTOSSH_LOGFILE	"$1"  'AUTOSSH_LOGFILE'
+	config_get AUTOSSH_MAXLIFETIME	"$1"  'AUTOSSH_MAXLIFETIME'
+	config_get AUTOSSH_MAXSTART	"$1"  'AUTOSSH_MAXSTART'
+	config_get AUTOSSH_MESSAGE	"$1"  'AUTOSSH_MESSAGE'
+	config_get AUTOSSH_NTSERVICE	"$1"  'AUTOSSH_NTSERVICE'
+	config_get AUTOSSH_PATH		"$1"  'AUTOSSH_PATH'
+	config_get AUTOSSH_PIDFILE	"$1"  'AUTOSSH_PIDFILE'
+	config_get poll			"$1"  'poll'
+	config_get AUTOSSH_POLL		"$1"  'AUTOSSH_POLL'
+	config_get AUTOSSH_PORT		"$1"  'AUTOSSH_PORT'
+	[ ! -z "$AUTOSSH_FIRST_POLL" ]		&& export AUTOSSH_FIRST_POLL="${AUTOSSH_FIRST_POLL}"
+	[ ! -z "$AUTOSSH_GATETIME" ]		&& export AUTOSSH_GATETIME="${AUTOSSH_GATETIME}"
+	[ ! -z "$AUTOSSH_LOGLEVEL" ]		&& export AUTOSSH_LOGLEVEL="${AUTOSSH_LOGLEVEL}"
+	[ ! -z "$AUTOSSH_LOGFILE" ]		&& export AUTOSSH_LOGFILE="${AUTOSSH_LOGFILE}"
+	[ ! -z "$AUTOSSH_MAXLIFETIME" ]		&& export AUTOSSH_MAXLIFETIME="${AUTOSSH_MAXLIFETIME}"
+	[ ! -z "$AUTOSSH_MAXSTART" ]		&& export AUTOSSH_MAXSTART="${AUTOSSH_MAXSTART}"
+	[ ! -z "$AUTOSSH_MESSAGE" ]		&& export AUTOSSH_MESSAGE="${AUTOSSH_MESSAGE}"
+	[ ! -z "$AUTOSSH_NTSERVICE" ]		&& export AUTOSSH_NTSERVICE="${AUTOSSH_NTSERVICE}"
+	[ ! -z "$AUTOSSH_PATH" ]		&& export AUTOSSH_PATH="${AUTOSSH_PATH}"
+	[ ! -z "$AUTOSSH_PIDFILE" ]		&& export AUTOSSH_PIDFILE="${AUTOSSH_PIDFILE}"
+	if [ ! -z "$AUTOSSH_POLL" ]; then
+		export AUTOSSH_POLL="${AUTOSSH_POLL}"
+	else
+		[ ! -z "$poll" ] && export AUTOSSH_POLL="${poll}"
+	fi
+	[ ! -z "$AUTOSSH_PORT" ]		&& export AUTOSSH_PORT="${AUTOSSH_PORT}"
 	if [ "$enabled" = 1 ]; then
 		echo ${monitorport:-20000}
 		/usr/sbin/autossh \

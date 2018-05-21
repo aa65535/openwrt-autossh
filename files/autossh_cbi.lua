@@ -33,9 +33,35 @@ o.rmempty     = false
 o = s:option(Value, "ssh", translate("远程登陆"))
 o.rmempty     = false
 
-o = s:option(Value, "poll", translate("轮询时间"))
-o.placeholder = 600
-o.default     = 600
+o = s:option(Value, "AUTOSSH_FIRST_POLL", translate("AUTOSSH_FIRST_POLL"))
 o.datatype    = "uinteger"
+
+o = s:option(Value, "AUTOSSH_GATETIME", translate("AUTOSSH_GATETIME"))
+o.placeholder = 30
+o.datatype    = "uinteger"
+
+o = s:option(Value, "AUTOSSH_LOGLEVEL", translate("AUTOSSH_LOGLEVEL"))
+o.datatype    = "and(uinteger,max(7))"
+
+o = s:option(Value, "AUTOSSH_LOGFILE", translate("AUTOSSH_LOGFILE"))
+
+o = s:option(Value, "AUTOSSH_MAXLIFETIME", translate("AUTOSSH_MAXLIFETIME"))
+
+o = s:option(Value, "AUTOSSH_MAXSTART", translate("AUTOSSH_MAXSTART"))
+o.placeholder = -1
+o.datatype    = "integer"
+
+o = s:option(Value, "AUTOSSH_MESSAGE", translate("AUTOSSH_MESSAGE"))
+
+o = s:option(Value, "AUTOSSH_PATH", translate("AUTOSSH_PATH"))
+
+o = s:option(Value, "AUTOSSH_PIDFILE", translate("AUTOSSH_PIDFILE"))
+
+o = s:option(Value, "AUTOSSH_POLL", translate("AUTOSSH_POLL"))
+o.placeholder = 600
+o.datatype    = "uinteger"
+
+o = s:option(Value, "AUTOSSH_PORT", translate("AUTOSSH_PORT"))
+o.datatype    = "port"
 
 return m

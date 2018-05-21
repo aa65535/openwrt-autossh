@@ -33,11 +33,6 @@ o.rmempty     = false
 o = s:option(Value, "ssh", translate("远程登陆"))
 o.rmempty     = false
 
-o = s:option(Value, "poll", translate("轮询时间"))
-o.placeholder = 600
-o.default     = 600
-o.datatype    = "uinteger"
-
 o = s:option(Value, "AUTOSSH_FIRST_POLL", translate("AUTOSSH_FIRST_POLL"))
 o.datatype    = "uinteger"
 

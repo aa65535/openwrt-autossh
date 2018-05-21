@@ -24,7 +24,6 @@ start_instance() {
 	unset AUTOSSH_NTSERVICE
 	unset AUTOSSH_PATH
 	unset AUTOSSH_PIDFILE
-	unset poll
 	unset AUTOSSH_POLL
 	unset AUTOSSH_PORT
 	config_get AUTOSSH_FIRST_POLL	"$1"  'AUTOSSH_FIRST_POLL'
@@ -50,11 +49,7 @@ start_instance() {
 	[ ! -z "$AUTOSSH_NTSERVICE" ]		&& export AUTOSSH_NTSERVICE="${AUTOSSH_NTSERVICE}"
 	[ ! -z "$AUTOSSH_PATH" ]		&& export AUTOSSH_PATH="${AUTOSSH_PATH}"
 	[ ! -z "$AUTOSSH_PIDFILE" ]		&& export AUTOSSH_PIDFILE="${AUTOSSH_PIDFILE}"
-	if [ ! -z "$AUTOSSH_POLL" ]; then
-		export AUTOSSH_POLL="${AUTOSSH_POLL}"
-	else
-		[ ! -z "$poll" ] && export AUTOSSH_POLL="${poll}"
-	fi
+	[ ! -z "$AUTOSSH_POLL" ]		&& export AUTOSSH_POLL="${AUTOSSH_POLL}"
 	[ ! -z "$AUTOSSH_PORT" ]		&& export AUTOSSH_PORT="${AUTOSSH_PORT}"
 	if [ "$enabled" = 1 ]; then
 		echo ${monitorport:-20000}
